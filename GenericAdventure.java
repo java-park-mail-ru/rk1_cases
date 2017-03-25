@@ -2,21 +2,37 @@
 //Помоги главнокомандующему справиться с войсками (поправить компиляцию, упростить, где можно, но трогать функцию main нельзя)
 public class GenericAdventure {
     public interface Man {
+        void move();
+        void cry();
     }
 
     public static class Knight implements Man {
+        @Override
         public void cry(){}
+
+        @Override
+        public void move(){}
     }
 
     public static class Peasant implements Man {
+        @Override
+        public void cry(){}
+
+        @Override
+        public void move(){}
     }
 
     public interface Army<T> {
         void move();
+        T getComander();
     }
 
     public static class Avantgarde<T> implements Army<T> {
         private T comander;
+        @Override
+        public T getComander(){
+            return comander;
+        }
         public Avantgarde(T comander) {
             this.comander = comander;
         }
@@ -26,6 +42,10 @@ public class GenericAdventure {
 
     public static class Escort<T> implements Army<T> {
         private T comander;
+        @Override
+        public T getComander(){
+            return comander;
+        }
         public Escort(T comander) {
             this.comander = comander;
         }
@@ -34,7 +54,7 @@ public class GenericAdventure {
     }
 
 
-    public static void doScout(Avantgarde<Man> avantgarde) {
+    public static void doScout(Avantgarde<Knight> avantgarde) {
         avantgarde.move();
         avantgarde.fallBack();
     }
@@ -43,23 +63,15 @@ public class GenericAdventure {
         escort.move();
     }
 
-    public static void moveKnights(Avantgarde<Knight> avantgarde) {
-        avantgarde.comander.cry();
-        avantgarde.move();
+    public static void moveKnights(Army<Knight> squad) {
+        squad.getComander().cry();
+        squad.move();
     }
 
-    public static void moveKnights(Escort<Knight> escort) {
-        escort.comander.cry();
-        escort.move();
-    }
-
-    public static void moveSomething(Avantgarde<Peasant> army) {
+    public static void moveSomething(Army army) {
         army.move();
     }
 
-    public static void moveSomething(Escort<Knight> army) {
-        army.move();
-    }
 
 
     public static void main(String[] args) {
