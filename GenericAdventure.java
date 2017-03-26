@@ -93,3 +93,4 @@ public class GenericAdventure {
         moveSomething(raiders);
     }
 }
+
