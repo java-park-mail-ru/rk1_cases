@@ -1,24 +1,18 @@
+/**
+ * Created by pacman29 on 26.03.17.
+ */
 
 //Помоги главнокомандующему справиться с войсками (поправить компиляцию, упростить, где можно, но трогать функцию main нельзя)
 public class GenericAdventure {
     public interface Man {
-        void move();
-        void cry();
     }
 
     public static class Knight implements Man {
-        @Override
         public void cry(){}
-
-        @Override
         public void move(){}
     }
 
     public static class Peasant implements Man {
-        @Override
-        public void cry(){}
-
-        @Override
         public void move(){}
     }
 
@@ -68,10 +62,9 @@ public class GenericAdventure {
         squad.move();
     }
 
-    public static void moveSomething(Army army) {
+    public static void moveSomething(Army<? extends Man> army) {
         army.move();
     }
-
 
 
     public static void main(String[] args) {
