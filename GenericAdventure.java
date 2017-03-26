@@ -9,11 +9,9 @@ public class GenericAdventure {
 
     public static class Knight implements Man {
         public void cry(){}
-        public void move(){}
     }
 
     public static class Peasant implements Man {
-        public void move(){}
     }
 
     public interface Army<T> {
@@ -86,4 +84,3 @@ public class GenericAdventure {
         moveSomething(raiders);
     }
 }
-
