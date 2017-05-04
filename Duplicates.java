@@ -10,9 +10,9 @@ public class Duplicates {
     
     public void cleareDuplicates() {
         for(Integer i = 0; i < bestListEver.size(); i++)
-            for(Integer j = i + 1; j < bestListEver.size(); j++)
+            for(int j = i + 1; j < bestListEver.size(); j++)
                 if(bestListEver.get(i) == bestListEver.get(j)) {
-                    bestListEver.remove(bestListEver.get(j));
+                    bestListEver.remove(j);
                     j--;
                 }
     }
