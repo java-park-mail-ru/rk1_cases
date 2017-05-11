@@ -9,15 +9,6 @@ public class Duplicates {
     private final List<Object> bestListEver = new ArrayList();
     
     public void cleareDuplicates() {
-        for(Integer i = 0; i < bestListEver.size(); i++)
-            for(int j = i + 1; j < bestListEver.size(); j++)
-                if(bestListEver.get(i) == bestListEver.get(j)) {
-                    bestListEver.remove(j);
-                    j--;
-                }
-    }
-    
-    public void clearSame() {
         List<Integer> list = bestListEver.stream().distinct().collect(Collectors.toList());
         Iterator<Integer> i = bestListEver.iterator();
 
@@ -28,6 +19,15 @@ public class Duplicates {
             else
                 i.remove();
         }
+    }
+    
+    public void clearSame() {
+        for(Integer i = 0; i < bestListEver.size(); i++)
+            for(int j = i + 1; j < bestListEver.size(); j++)
+                if(bestListEver.get(i) == bestListEver.get(j)) {
+                    bestListEver.remove(j);
+                    j--;
+                }
     }
 
     public List<Object> getBestListEver() {
