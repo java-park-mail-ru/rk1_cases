@@ -1,3 +1,6 @@
+/**
+ * Что здесь не так? Объясните почему? Как можно поправить?
+ */
 class BoxingPuzzle {
 
     public void puzzleMe() {
@@ -18,8 +21,9 @@ class BoxingPuzzle {
             System.out.println("Four little nigger boys going out to sea;\n" +
                     "A red herring swallowed one, and then there were three.");
         n = decrement(n);
-
-        if (n == half)
+        
+        //if (n.intValue() == half.intValue())
+        if (n.equals(half))
             System.out.println("debug: Only half is left");
 
         if (n == 3)
@@ -47,5 +51,12 @@ class BoxingPuzzle {
     private Integer decrement(Integer i) {
         i--;
         return i;
+    }
+}
+
+public class App{
+    public static void main(String args[]){
+        BoxingPuzzle pzl = new BoxingPuzzle();
+        pzl.puzzleMe();
     }
 }
