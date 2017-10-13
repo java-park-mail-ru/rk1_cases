@@ -5,7 +5,8 @@ public class GenericAdventure {
     }
 
     public static class Knight implements Man {
-        public void cry(){}
+        public static void cry() {
+        }
     }
 
     public static class Peasant implements Man {
@@ -15,7 +16,7 @@ public class GenericAdventure {
         void move();
     }
 
-    public static class Avantgarde<T> implements Army<T> {
+    public static class Avantgarde<T> implements Army {
         private T comander;
         public Avantgarde(T comander) {
             this.comander = comander;
@@ -24,7 +25,7 @@ public class GenericAdventure {
         public void move(){}
     }
 
-    public static class Escort<T> implements Army<T> {
+    public static class Escort<T> implements Army {
         private T comander;
         public Escort(T comander) {
             this.comander = comander;
@@ -34,30 +35,22 @@ public class GenericAdventure {
     }
 
 
-    public static void doScout(Avantgarde<Man> avantgarde) {
+    public static void doScout(Avantgarde<? extends Man> avantgarde) {
         avantgarde.move();
         avantgarde.fallBack();
     }
 
-    public static void moveEscort(Escort<Man> escort) {
+    public static void moveEscort(Escort<? extends Man> escort) {
         escort.move();
     }
 
-    public static void moveKnights(Avantgarde<Knight> avantgarde) {
-        avantgarde.comander.cry();
+    public static void moveKnights(Army<Knight> avantgarde) {
+        Knight.cry();
         avantgarde.move();
     }
 
-    public static void moveKnights(Escort<Knight> escort) {
-        escort.comander.cry();
-        escort.move();
-    }
 
-    public static void moveSomething(Avantgarde<Peasant> army) {
-        army.move();
-    }
-
-    public static void moveSomething(Escort<Knight> army) {
+    public static void moveSomething(Army<? extends Man> army) {
         army.move();
     }
 
