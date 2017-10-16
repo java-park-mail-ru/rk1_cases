@@ -5,7 +5,7 @@ public class GenericAdventure {
     }
 
     public static class Knight implements Man {
-        public static void cry() {
+        public void cry() {
         }
     }
 
@@ -14,24 +14,41 @@ public class GenericAdventure {
 
     public interface Army<T> {
         void move();
+
+        T getComander();
     }
 
     public static class Avantgarde<T> implements Army {
         private T comander;
+
+        public T getComander() {
+            return this.comander;
+        }
+
         public Avantgarde(T comander) {
             this.comander = comander;
         }
-        public void fallBack() {}
-        public void move(){}
+
+        public void fallBack() {
+        }
+
+        public void move() {
+        }
     }
 
     public static class Escort<T> implements Army {
         private T comander;
+
+        public T getComander() {
+            return this.comander;
+        }
+
         public Escort(T comander) {
             this.comander = comander;
         }
 
-        public void move(){}
+        public void move() {
+        }
     }
 
 
@@ -45,7 +62,7 @@ public class GenericAdventure {
     }
 
     public static void moveKnights(Army<Knight> avantgarde) {
-        Knight.cry();
+        avantgarde.getComander().cry();
         avantgarde.move();
     }
 
