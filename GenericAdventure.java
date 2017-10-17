@@ -18,7 +18,7 @@ public class GenericAdventure {
         T getComander();
     }
 
-    public static class Avantgarde<T> implements Army {
+    public static class Avantgarde<T> implements Army<T> {
         private T comander;
 
         public T getComander() {
@@ -36,7 +36,7 @@ public class GenericAdventure {
         }
     }
 
-    public static class Escort<T> implements Army {
+    public static class Escort<T> implements Army<T> {
         private T comander;
 
         public T getComander() {
