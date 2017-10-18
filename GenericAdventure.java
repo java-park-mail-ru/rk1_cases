@@ -5,7 +5,8 @@ public class GenericAdventure {
     }
 
     public static class Knight implements Man {
-        public void cry(){}
+        public void cry() {
+        }
     }
 
     public static class Peasant implements Man {
@@ -13,51 +14,60 @@ public class GenericAdventure {
 
     public interface Army<T> {
         void move();
+
+        T getComander();
     }
 
     public static class Avantgarde<T> implements Army<T> {
         private T comander;
+
+        public T getComander() {
+            return this.comander;
+        }
+
         public Avantgarde(T comander) {
             this.comander = comander;
         }
-        public void fallBack() {}
-        public void move(){}
+
+        public void fallBack() {
+        }
+
+        public void move() {
+        }
     }
 
     public static class Escort<T> implements Army<T> {
         private T comander;
+
+        public T getComander() {
+            return this.comander;
+        }
+
         public Escort(T comander) {
             this.comander = comander;
         }
 
-        public void move(){}
+        public void move() {
+        }
     }
 
 
-    public static void doScout(Avantgarde<Man> avantgarde) {
+    public static void doScout(Avantgarde<? extends Man> avantgarde) {
         avantgarde.move();
         avantgarde.fallBack();
     }
 
-    public static void moveEscort(Escort<Man> escort) {
+    public static void moveEscort(Escort<? extends Man> escort) {
         escort.move();
     }
 
-    public static void moveKnights(Avantgarde<Knight> avantgarde) {
-        avantgarde.comander.cry();
+    public static void moveKnights(Army<Knight> avantgarde) {
+        avantgarde.getComander().cry();
         avantgarde.move();
     }
 
-    public static void moveKnights(Escort<Knight> escort) {
-        escort.comander.cry();
-        escort.move();
-    }
 
-    public static void moveSomething(Avantgarde<Peasant> army) {
-        army.move();
-    }
-
-    public static void moveSomething(Escort<Knight> army) {
+    public static void moveSomething(Army<? extends Man> army) {
         army.move();
     }
 
