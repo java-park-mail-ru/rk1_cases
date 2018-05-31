@@ -35,7 +35,7 @@ public class HashMapCounterspionage {
                     redArmy.add(random.nextInt(redArmy.size()), officer.disguiseWithForgedTicket());
                 } else {
                     Comrade killed = redArmy.remove(random.nextInt(redArmy.size()));
-                    killedN++;п
+                    killedN++;
                     redArmy.add(random.nextInt(redArmy.size()), officer.disguiseWithRealTicket(killed));
                 }
             });
@@ -70,7 +70,7 @@ public class HashMapCounterspionage {
         static List<ComradePartyTicket> findSuspicious(List<Comrade> redArmy) {
             return Stream.concat(
                     redArmy.stream().filter(comrade -> !comrades.getOrDefault(comrade.ticket, comrade).equals(comrade) || !checkTicketValid(comrade.ticket)),
-                    redArmy.stream().filter(comrade -> random.nextBoolean() && random.nextBoolean() && random.nextBoolean() && random.nextBoolean()))
+                    redArmy.stream().filter(comrade -> random.nextBoolean() && random.nextBoolean() && random.nextBoolean() && random.nextBoolean()))          // TODO: Доказать, что не верблюд
                     .distinct()
                     .map(comrade -> comrade.ticket.archiveCopy())
                     .collect(Collectors.toList());
@@ -85,8 +85,7 @@ public class HashMapCounterspionage {
         }
 
         static boolean checkTicketValid(ComradePartyTicket ticket) {
-            // Stalin thinks this is not effective
-            return ticket != null;
+            return ticket != null && ticket.bracketsMaterial == ComradePartyTicket.BracketsMaterial.IRON;
         }
     }
 
@@ -134,6 +133,38 @@ public class HashMapCounterspionage {
         public enum BracketsMaterial {
             IRON,
             STAINLESS_STEEL
+        }
+
+        public String toString() {
+            String result = "";
+            result += N + " ";
+            result += fio + " ";
+            result += age + " ";
+            result += bracketsMaterial + " ";
+            result += copy + " ";
+            return  result;
+        }
+
+        @Override
+        public boolean equals(Object obj) {
+            if (this == obj) {
+                return true;
+            }
+            if (obj == null) {
+                return false;
+            }
+            if (getClass() != obj.getClass()) {
+                return false;
+            }
+
+            ComradePartyTicket other = (ComradePartyTicket) obj;
+
+            return N == other.N && fio.equals(other.fio) && age == other.age && bracketsMaterial == other.bracketsMaterial;
+        }
+
+        @Override
+        public int hashCode() {
+            return N;
         }
     }
 
